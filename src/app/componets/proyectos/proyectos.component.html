@@ -1,0 +1,222 @@
+<section >
+<div 
+class="col-md"
+  data-aos="fade-up"
+  data-aos-offset="500"
+  data-aos-duration="500"
+  >
+  <br>   <br>
+  <img id="imagen4" 
+  src="https://i.imgur.com/trhZd3p.jpg" 
+  style="float: right" 
+  class="img-fluid" 
+  alt=""
+  height="500"
+  width="750">
+</div>
+<br>   <br>
+<br>   <br>
+</section>
+
+<section class="conteiner custom-section"
+class="row">  <div class="cb col-md">
+  <p class="card-text">
+  <h1 id="Educacion">Proyectos</h1>
+  <br><br>
+
+    <div class="cb col-md">
+      <p  class="card-text">
+        <div class="row" *ngFor=" let proyecto of proyectos">
+        <p>{{proyecto.descripcion}}</p>
+        <button *ngIf="isLogged"
+        (click)="onOpenModal('edit',proyecto)"
+        type="button" 
+        class="btn btn-primary tooltips"
+        data-placement="top"
+        data-toggle="tooltips"
+        data-original-title="Edit"
+        data-bs-toggle="modal" 
+        data-bs-target="#editProyectosModal">
+        <i class="fa fa-pencil"></i>
+          Editar 
+         </button>
+         <button *ngIf="isLogged"
+         (click)="onOpenModal('delete',proyecto)"
+         type="button" 
+         class="btn btn-secondary tooltips"
+         data-placement="top"
+         data-toggle="tooltip"
+         data-original-title="Delete"
+         data-bs-toggle="modal" 
+         data-bs-target="#deleteProyectosModal">
+        <i class="fa fa-times"></i> 
+        Borrar 
+        </button>
+        &nbsp;
+</div>
+  &nbsp;
+
+
+
+
+   <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProyectosModal" *ngIf="isLogged">
+  Añadir proyecto
+</button>
+<br><br>
+<a target="_blank" href="https://imgur.com/user/FedexxF/posts">
+  <img 
+  src="https://play-lh.googleusercontent.com/hYdIazwJBlPhmN74Yz3m_jU9nA6t02U7ZARfKunt6dauUAB6O3nLHp0v5ypisNt9OJk"
+  alt="" 
+  width="25"  
+  class="d-inline-block align-text-top">
+  Ver imgur 
+</a>
+
+
+
+
+
+
+
+
+<!-- add Modal -->
+<div class="modal fade" id="addProyectosModal" tabindex="-1" aria-labelledby="addProyectosModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProyectosModalLabel">Editar </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm"(ngSubmit)="onAddProyectos(addForm)">
+          <div class="form-group">
+               <label for="descripcion">Descripcion</label>
+               <input type="text"
+               ngModel
+               name="descripcion"
+               class="form-control"
+               id="descripcion"
+               placeholder="Descripcion"
+               required
+               >
+          </div>
+      <div class="modal-footer">
+        <button type="button" 
+        id="add-proyectos-form"
+        class="btn btn-secondary" 
+        data-bs-dismiss="modal">
+        Cerrar
+      </button>
+        <button 
+        [disabled]="addForm.invalid"
+        type="submit" 
+        data-bs-dismiss="modal"
+        data-backdrop="false"
+        class="btn btn-primary">
+        
+        Guardar Cambios
+       </button>
+      </div>
+    </form>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<!-- Delete modal -->
+<div
+  class="modal fade"
+  id="deleteProyectosModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteProyectosModelLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteProyectosModelLabel">Borrar </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p style="color: rgb(8, 8, 8)"> Estás seguro que quieres borrar <br>
+          {{ deleteProyectos?.descripcion }} <br>
+        </p>
+        <div class="modal-footer">
+          <button type="button" 
+          class="btn btn-secondary" 
+          data-bs-dismiss="modal">
+          No
+          </button>
+          <button
+            (click)="onDeleteProyectos(deleteProyectos!.idProyectos)"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+            type="submit"
+            data-backdrop="false"
+          >
+            Si
+          </button>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Edit modal  -->
+<div class="modal fade" id="editProyectosModal" tabindex="-1" aria-labelledby="editProyectosModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProyectosModalLabel">Editar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm" >
+          <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <input
+              type="text"
+              ngModel="{{ editProyectos?.descripcion }}"
+              name="descripcion"
+              class="form-control"
+              id="descripcion"
+              aria-describedby="emailHelp"
+              placeholder="Descripcion"
+              required
+            />
+          </div>
+          <input
+          type="hidden"
+          ngModel="{{ editProyectos?.idProyectos }}"
+          name="idProyectos"
+          class="form-control"
+          id="idProyectos1"
+          placeholder=""
+          required
+        />
+          <div class="modal-footer">
+            <button type="button" 
+            id="add-proyectos-form"
+            class="btn btn-secondary" 
+            data-bs-dismiss="modal">
+            Cerrar
+          </button>
+            <button
+            (click)="onUpdateProyectos(editForm.value)"
+            data-bs-dismiss="modal"
+              class="btn btn-primary"
+              type="submit"
+              data-backdrop="false"
+              [disabled]="editForm.invalid"
+            >
+              Guardar Cambios
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 

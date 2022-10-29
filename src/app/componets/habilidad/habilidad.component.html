@@ -1,0 +1,222 @@
+<section  class="container"  >
+<section  class="container" >
+<div class="row" id="Habilidades Profesionales">
+  <h1> Habilidades Profesionales</h1>
+<div class="text-center col-sm-4 col-md-4 col-lg-4 circulo"  *ngFor="let habilidad of habilidades">
+<circle-progress
+  [percent]="(habilidad.porcentajeHab)"
+  [radius]="100"
+  [maxPercent]="100"
+  [showUnits]="false"
+  [title]="(habilidad.tituloHab)"
+  [titleColor]="'pink'"
+  [titleFontSize]="'50px'"
+  [showSubtitle]="false"
+  [outerStrokeWidth]="16"
+  [innerStrokeWidth]="8"
+  [outerStrokeColor]="'#78C000'"
+  [innerStrokeColor]="'#C7E596'"
+  [animation]="true"
+  [animationDuration]="700"
+  [lazy]="true"
+></circle-progress>
+<button *ngIf="isLogged"
+       (click)="onOpenModal('edit',habilidad)"
+       type="button" 
+       class="btn btn-primary tooltips"
+       data-placement="top"
+       data-toggle="tooltips"
+       data-original-title="Edit"
+       data-bs-toggle="modal" 
+       data-backdrop="false"
+       data-bs-target="#editHabilidadModal">
+       <i class="fa fa-pencil"></i>
+           Editar Habilidad
+       </button>
+       <button *ngIf="isLogged"
+       (click)="onOpenModal('delete',habilidad)"
+        type="button" 
+        class="btn btn-secondary tooltips"
+        data-placement="top"
+        data-toggle="tooltip"
+        data-original-title="Delete"
+        data-bs-toggle="modal" 
+        data-backdrop="false"
+        data-bs-target="#deleteHabilidadModal">
+        <i class="fa fa-times"></i> 
+        Borrar Habilidad
+   </button>
+</div>
+&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addHabilidadModal" *ngIf="isLogged">
+ Añadir Habilidad
+</button>
+
+
+      <!-- add Modal -->
+      <div class="modal fade" id="addHabilidadModal" tabindex="-1" aria-labelledby="addHabilidadModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addHabilidadModalLabel">Editar habilidad</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form #addForm="ngForm"(ngSubmit)="onAddHabilidad(addForm)">
+                <div class="form-group">
+                     <label for="tituloHab">Titulo</label>
+                     <input type="text"
+                     ngModel
+                     name="tituloHab"
+                     class="form-control"
+                     id="tituloHab"
+                     placeholder="Titulo"
+                     required
+                     >
+                </div>
+                <div class="form-group">
+                 <label for="porcentajeHab">Porcentaje
+                 </label>
+                 <input type="text"
+                 ngModel
+                 name="porcentajeHab"
+                 class="form-control"
+                 id="porcentajeHab"
+                 placeholder="Porcentaje"
+                 required
+                 >
+            </div>
+            <div class="modal-footer">
+              <button type="button" 
+              id="add-habilidad-form"
+              class="btn btn-secondary" 
+              data-bs-dismiss="modal">
+              Cerrar
+            </button>
+              <button 
+              [disabled]="addForm.invalid"
+              type="submit" 
+              data-backdrop="false"
+              class="btn btn-primary">
+              Guardar Cambios
+             </button>
+            </div>
+          </form>
+         </div>
+        </div>
+       </div>
+      </div>
+      
+      
+      <!-- Delete modal -->
+      <div
+        class="modal fade"
+        id="deleteHabilidadModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="deleteHabilidadModelLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteHabilidadModelLabel">Borrar habilidad</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p style="color: rgb(8, 8, 8)"> Estás seguro que quieres borrar <br>
+                {{ deleteHabilidad?.tituloHab }} <br>
+                {{deleteHabilidad?.porcentajeHab}}% <br>
+              </p>
+              <div class="modal-footer">
+                <button 
+                type="button" 
+                class="btn btn-secondary" 
+                data-bs-dismiss="modal">
+                No
+                </button>
+                <button
+                  (click)="onDeleteHabilidad(deleteHabilidad!.idHab)"
+                  class="btn btn-danger"
+                  data-bs-dismiss="modal"
+                  type="submit"
+                  data-backdrop="false"
+                >
+                  Si
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+      <!-- Edit modal  -->
+      <div class="modal fade" id="editHabilidadModal" tabindex="-1" aria-labelledby="editHabilidadModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editHabilidadModalLabel">Editar habilidad</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form #editForm="ngForm" >
+                <div class="form-group">
+                  <label for="tituloHab">Titulo</label>
+                  <input
+                    type="text"
+                    ngModel="{{ editHabilidad?.tituloHab }}"
+                    name="tituloHab"
+                    class="form-control"
+                    id="tituloHab1"
+                    aria-describedby="emailHelp"
+                    placeholder="Titulo"
+                    required
+                  />
+                </div>
+                <input
+                type="hidden"
+                ngModel="{{ editHabilidad?.idHab }}"
+                name="idHab"
+                class="form-control"
+                id="idHab1"
+                placeholder=""
+                required
+              />
+              <div class="form-group">
+                <label for="porcentajeHab">Porcentaje</label>
+                <input
+                  type="text"
+                  ngModel="{{ editHabilidad?.porcentajeHab }}"
+                  name="porcentajeHab"
+                  class="form-control"
+                  id="porcentajeHab1"
+                  placeholder="Porcentaje"
+                />
+                </div>
+                <div class="modal-footer">
+                  <button type="button" 
+                  id="add-habilidad-form"
+                  class="btn btn-secondary" 
+                  data-bs-dismiss="modal">
+                  Cerrar
+                </button>
+                  <button
+                  (click)="onUpdateHabilidad(editForm.value)"
+                  data-bs-dismiss="modal"
+                    class="btn btn-primary"
+                    type="submit"
+                    data-backdrop="false"
+                    [disabled]="editForm.invalid"
+                  >
+                    Guardar Cambios
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      

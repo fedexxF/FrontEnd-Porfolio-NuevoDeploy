@@ -1,0 +1,232 @@
+<div class="bg home"></div>
+<div class="bg-text">
+        <div class="row" *ngFor=" let home of homes">
+    <h1 style="font-size: 10vw"> {{home.tituloHome}}</h1>
+        <p style="font-size: 4vw" >{{home.subTituloHome}}</p>
+        <p style="font-size: 3vw" > {{home.nombreHome}}</p>
+        &nbsp;
+        <button *ngIf="isLogged"
+        (click)="onOpenModal('edit',home)"
+        type="button" 
+        class="btn btn-primary tooltips"
+        data-placement="top"
+        data-toggle="tooltips"
+        data-original-title="Edit"
+        data-bs-toggle="modal" 
+        data-bs-target="#editHomeModal">
+        <i class="fa fa-pencil"></i>
+          Editar 
+         </button>
+         <button *ngIf="isLogged"
+         (click)="onOpenModal('delete',home)"
+         type="button" 
+         class="btn btn-secondary tooltips"
+         data-placement="top"
+         data-toggle="tooltip"
+         data-original-title="Delete"
+         data-bs-toggle="modal" 
+         data-bs-target="#deleteHomeModal">
+        <i class="fa fa-times"></i> 
+        Borrar 
+        </button>
+        
+&nbsp;
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addHomeModal" *ngIf="isLogged">
+Añadir Titulo
+</button>
+
+</div>
+     
+
+  
+  
+  <!-- add Modal -->
+  <div class="modal fade" id="addHomeModal" tabindex="-1" aria-labelledby="addHomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addHomeModalLabel">Editar </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #addForm="ngForm"(ngSubmit)="onAddHome(addForm)">
+            <div class="form-group">
+                 <label for="tituloHome">Titulo</label>
+                 <input type="text"
+                 ngModel
+                 name="tituloHome"
+                 class="form-control"
+                 id="tituloHome"
+                 placeholder="Titulo"
+                 required
+                 >
+            </div>
+            <div class="form-group">
+             <label for="subTituloHome">subTituloHome
+             </label>
+             <input type="text"
+             ngModel
+             name="subTituloHome"
+             class="form-control"
+             id="subTituloHome"
+             placeholder="subTituloHome"
+             required
+             >
+        </div>
+            <div class="form-group">
+              <label for="nombreHome">Nombre</label>
+              <input type="text"
+              ngModel
+              name="nombreHome"
+              class="form-control"
+              id="nombreHome"
+              placeholder="Nombre"
+              required
+              >
+            </div>
+        <div class="modal-footer">
+          <button type="button" 
+          id="add-home-form"
+          class="btn btn-secondary" 
+          data-bs-dismiss="modal">
+          Cerrar
+        </button>
+          <button 
+          [disabled]="addForm.invalid"
+          type="submit" 
+          data-bs-dismiss="modal"
+          data-backdrop="false"
+          class="btn btn-primary">
+          Guardar Cambios
+         </button>
+        </div>
+      </form>
+     </div>
+    </div>
+   </div>
+  </div>
+  
+  
+  <!-- Delete modal -->
+  <div
+    class="modal fade"
+    id="deleteHomeModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="deleteHomeModelLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteHomeModelLabel">Borrar </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p style="color: rgb(8, 8, 8)"> Estás seguro que quieres borrar <br>
+            {{deleteHome?.tituloHome }} <br>
+            {{deleteHome?.subTituloHome}} <br>
+            {{deleteHome?.nombreHome}} 
+            ?
+          </p>
+          <div class="modal-footer">
+            <button type="button" 
+            class="btn btn-secondary" 
+            data-bs-dismiss="modal">
+            No
+            </button>
+            <button
+              (click)="onDeleteHome(deleteHome!.idHome)"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              type="submit"
+              data-backdrop="false"
+              data-bs-dismiss="modal"
+            >
+              Si
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  <!-- Edit modal  -->
+  <div class="modal fade" id="editHomeModal" tabindex="-1" aria-labelledby="editHomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editHomeModalLabel">Editar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm" >
+            <div class="form-group">
+              <label for="tituloHome">Titulo</label>
+              <input
+                type="text"
+                ngModel="{{ editHome?.tituloHome }}"
+                name="tituloHome"
+                class="form-control"
+                id="tituloHome1"
+                aria-describedby="emailHelp"
+                placeholder="Titulo"
+                required
+              />
+            </div>
+            <input
+            type="hidden"
+            ngModel="{{ editHome?.idHome }}"
+            name="idHome"
+            class="form-control"
+            id="idHome1"
+            placeholder=""
+            required
+          />
+          <div class="form-group">
+            <label for="subTituloHome">SubTitutlo</label>
+            <input
+              type="text"
+              ngModel="{{ editHome?.subTituloHome }}"
+              name="subTituloHome"
+              class="form-control"
+              id="subTituloHome1"
+              placeholder="subTitulo"
+            />
+          </div>
+            <div class="form-group">
+              <label for="nombreHome">Nombre</label>
+              <input
+                type="text"
+                ngModel="{{ editHome?.nombreHome }}"
+                name="nombreHome"
+                class="form-control"
+                id="nombreHome"
+                placeholder="Nombre"
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="button" 
+              id="add-home-form"
+              class="btn btn-secondary" 
+              data-bs-dismiss="modal">
+              Cerrar
+            </button>
+              <button
+              (click)="onUpdateHome(editForm.value)"
+              data-bs-dismiss="modal"
+                class="btn btn-primary"
+                type="submit"
+                data-backdrop="false"
+                [disabled]="editForm.invalid"
+              >
+                Guardar Cambios
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
