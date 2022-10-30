@@ -2,3 +2,17 @@ body{
     margin: 0;
     background: lightgray; 
 }
+
+#Experiencia{
+    text-align: center;
+}
+
+#ExperienciaBotones{
+    text-align: center;
+    margin-left: 200px;
+}
+
+#ExperienciaBotonesAñadir{
+    text-align: center;
+    margin-left: 100px;
+}

@@ -9,8 +9,8 @@ import { Habilidad } from '../model/habilidad';
 })
 export class HabilidadService {
 
-  //private apiServerUrl='http://localhost:8080';
-  private apiServerUrl='https://back-end-porfolio.herokuapp.com';
+  private apiServerUrl='http://localhost:8080';
+  //private apiServerUrl='https://back-end-porfolio.herokuapp.com';
   constructor(private http:HttpClient) { }
  
   public getHabilidad():Observable<Habilidad[]>{

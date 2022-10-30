@@ -1,11 +1,6 @@
+
+<br>   <br>
 <section >
-<div 
-class="col-md"
-  data-aos="fade-up"
-  data-aos-offset="500"
-  data-aos-duration="500"
-  >
-  <br>   <br>
   <img id="imagen4" 
   src="https://i.imgur.com/trhZd3p.jpg" 
   style="float: right" 
@@ -13,20 +8,14 @@ class="col-md"
   alt=""
   height="500"
   width="750">
-</div>
 <br>   <br>
 <br>   <br>
 </section>
 
-<section class="conteiner custom-section"
-class="row">  <div class="cb col-md">
-  <p class="card-text">
-  <h1 id="Educacion">Proyectos</h1>
+<section class="conteiner custom-section">
+  <h1 id="Proyectos">Proyectos</h1>
   <br><br>
-
-    <div class="cb col-md">
-      <p  class="card-text">
-        <div class="row" *ngFor=" let proyecto of proyectos">
+        <div id="Proyectos" *ngFor=" let proyecto of proyectos">
         <p>{{proyecto.descripcion}}</p>
         <button *ngIf="isLogged"
         (click)="onOpenModal('edit',proyecto)"
@@ -52,27 +41,30 @@ class="row">  <div class="cb col-md">
         <i class="fa fa-times"></i> 
         Borrar 
         </button>
-        &nbsp;
-</div>
+      </div>
+      &nbsp;
+<div>
   &nbsp;
 
 
-
-
    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProyectosModal" *ngIf="isLogged">
+<button type="button" id="Proyectos"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProyectosModal" *ngIf="isLogged">
   Añadir proyecto
 </button>
-<br><br>
+<br>
+<br>
+&nbsp;
+<div>
 <a target="_blank" href="https://imgur.com/user/FedexxF/posts">
   <img 
   src="https://play-lh.googleusercontent.com/hYdIazwJBlPhmN74Yz3m_jU9nA6t02U7ZARfKunt6dauUAB6O3nLHp0v5ypisNt9OJk"
   alt="" 
   width="25"  
-  class="d-inline-block align-text-top">
+  class="text-decoration-none"
+  id="imgur">
   Ver imgur 
 </a>
-
+</div>
 
 
 

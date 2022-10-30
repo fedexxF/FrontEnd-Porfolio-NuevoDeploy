@@ -2,3 +2,27 @@ body{
     margin: 0;
     background: lightgray; 
 }
+
+#Educacion{
+    text-align: left;
+    margin-left: 100px;
+}
+
+#BotonEducacion{
+    text-align: left;
+    margin-left: 200px;
+}
+
+#BotonEducacion2{
+    text-align: left;
+    margin-left: 100px;
+}
+
+#TituloEducacion{
+    margin-left: 250px;
+}
+
+#Imagen2{
+float: right;
+ }
+ 

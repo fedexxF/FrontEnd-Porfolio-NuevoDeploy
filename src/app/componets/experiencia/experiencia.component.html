@@ -1,49 +1,43 @@
 <section class="conteiner custom-section">
-  <div class="cb col-md">
-    <p class="card-text">
-    <h1 id="Educacion">Experiencia</h1>
+    <h1 id="Experiencia">Experiencia</h1>
     <br><br>
-     <div class="row"  *ngFor=" let experiencia of experiencias">
-       <p>{{experiencia.tituloExp}} <br>
-       {{experiencia.descExp}} <br>
-       {{experiencia.fechaExp}}</p>
-
-       <button *ngIf="isLogged"
-       (click)="onOpenModal('edit',experiencia)"
-       type="button" 
-       class="btn btn-primary tooltips"
-       data-placement="top"
-       data-toggle="tooltips"
-       data-original-title="Edit"
-       data-bs-toggle="modal" 
-       data-backdrop="false"
-       data-bs-target="#editExperienciaModal">
-       <i class="fa fa-pencil"></i>
-           Editar Experiencia 
+      <div *ngFor=" let experiencia of experiencias">
+        <p id="Experiencia">{{experiencia.tituloExp}} <br>
+        {{experiencia.descExp}} <br>
+        {{experiencia.fechaExp}}</p>
+      <button id="ExperienciaBotones" *ngIf="isLogged"
+      (click)="onOpenModal('edit',experiencia)"
+      type="button" 
+      class="btn btn-primary tooltips"
+      data-placement="top"
+      data-toggle="tooltips"
+      data-original-title="Edit"
+      data-bs-toggle="modal" 
+      data-bs-target="#editExperienciaModal">
+      <i class="fa fa-pencil"></i>
+          Editar Experiencia 
        </button>
-       <button *ngIf="isLogged"
+       <button  *ngIf="isLogged"
        (click)="onOpenModal('delete',experiencia)"
-        type="button" 
-        class="btn btn-secondary tooltips"
-        data-placement="top"
-        data-toggle="tooltip"
-        data-original-title="Delete"
-        data-bs-toggle="modal" 
-        data-backdrop="false"
-        data-bs-target="#deleteExperienciaModal">
-        <i class="fa fa-times"></i> 
-        Borrar Experiencia
-   </button>
-</div>
-&nbsp;
-
-
+       type="button" 
+       class="btn btn-secondary tooltips"
+       data-placement="top"
+       data-toggle="tooltip"
+       data-original-title="Delete"
+       data-bs-toggle="modal" 
+       data-bs-target="#deleteExperienciaModal">
+       <i class="fa fa-times"></i> 
+       Borrar Experiencia
+       </button>
+      </div>
+      &nbsp;
+<div>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExperienciaModal" *ngIf="isLogged">
+<button type="button"  class="btn btn-primary" id="ExperienciaBotones" data-bs-toggle="modal" data-bs-target="#addExperienciaModal" *ngIf="isLogged"  >
         Añadir experiencia
       </button>
-
-   
+</div>
+   <br><br>
       
       <!-- add Modal -->
       <div class="modal fade" id="addExperienciaModal" tabindex="-1" aria-labelledby="addExperienciaModalLabel" aria-hidden="true">
