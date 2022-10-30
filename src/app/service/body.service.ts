@@ -9,8 +9,8 @@ import { Body } from '../model/body'
 })
 export class BodyService {
 
-   private apiServerUrl='http://localhost:8080';
-   //private apiServerUrl='https://back-end-porfolio.herokuapp.com';
+   //private apiServerUrl='http://localhost:8080';
+   private apiServerUrl='https://back-end-porfolio.herokuapp.com';
   constructor(private http:HttpClient) { }
  
   public getBody():Observable<Body[]>{

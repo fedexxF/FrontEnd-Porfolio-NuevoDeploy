@@ -9,8 +9,8 @@ import { Home } from '../model/home';
 })
 export class HomeService {
   
-  private apiServerUrl='http://localhost:8080';
-  //private apiServerUrl='https://back-end-porfolio.herokuapp.com';
+  //private apiServerUrl='http://localhost:8080';
+  private apiServerUrl='https://back-end-porfolio.herokuapp.com';
   constructor(private http:HttpClient) { }
  
   public getHome():Observable<Home[]>{
