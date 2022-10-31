@@ -9,14 +9,14 @@
   [showUnits]="false"
   [title]="(habilidad.tituloHab)"
   [titleColor]="'black'"
-  [titleFontSize]="'50px'"
+  [titleFontSize]="'40px'"
   [showSubtitle]="false"
   [outerStrokeWidth]="16"
   [innerStrokeWidth]="8"
   [outerStrokeColor]="'green'"
   [innerStrokeColor]="'yellow'"
   [animation]="true"
-  [animationDuration]="700"
+  [animationDuration]="1300"
   [lazy]="true"
 ></circle-progress>
 <button *ngIf="isLogged"
@@ -79,7 +79,8 @@
                 <div class="form-group">
                  <label for="porcentajeHab">Porcentaje
                  </label>
-                 <input type="text"
+                 <input type="number"
+                 max="100"
                  ngModel
                  name="porcentajeHab"
                  class="form-control"
@@ -166,6 +167,7 @@
                   <label for="tituloHab">Titulo</label>
                   <input
                     type="text"
+                    max="100"
                     ngModel="{{ editHabilidad?.tituloHab }}"
                     name="tituloHab"
                     class="form-control"
@@ -187,7 +189,8 @@
               <div class="form-group">
                 <label for="porcentajeHab">Porcentaje</label>
                 <input
-                  type="text"
+                  type="number"
+                  max="100"
                   ngModel="{{ editHabilidad?.porcentajeHab }}"
                   name="porcentajeHab"
                   class="form-control"
