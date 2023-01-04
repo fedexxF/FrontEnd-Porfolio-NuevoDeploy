@@ -32,12 +32,12 @@ export class RecuperarPasswordComponent implements OnInit {
     const email =this.recuperarUsuario.value.correo;
     this.loading =true;
     this.afAuth.sendPasswordResetEmail(email).then(() => {
-      this.toastr.info('Le enviamos un correo para reestablecer su password','Recuperar password')
+      this.toastr.info('Le enviamos un correo para reestablecer su password, revise su casilla de SPAM','Recuperar password')
       this.router.navigate(['/login']);
 
     }).catch((error) =>{
       this.loading =false;
-      this.toastr.error(this.FirebaseError.firebaseError(error.code),'Error');
+      this.toastr.error(this.FirebaseError.firebaseError(error.code),'Error, Usuario Incorrecto o');
 
     })
   }

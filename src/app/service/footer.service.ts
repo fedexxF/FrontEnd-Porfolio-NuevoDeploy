@@ -10,7 +10,8 @@ import { Footer } from '../model/footer';
 export class FooterService {
 
   //private apiServerUrl='http://localhost:8080';
-  private apiServerUrl='https://back-end-porfolio.herokuapp.com';
+  //private apiServerUrl='https://back-end-porfolio.herokuapp.com';
+  private apiServerUrl='https://backend-porfolio-nuevodeploy-production.up.railway.app';
   constructor(private http:HttpClient) { }
 
 public getFooter():Observable<Footer[]>{
