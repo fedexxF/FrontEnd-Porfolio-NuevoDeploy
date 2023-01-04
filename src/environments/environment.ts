@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   //apiBaseURL: 'http://localhost:8080',
   apiBaseURL: 'https://backend-porfolio-nuevodeploy-production.up.railway.app',
-  //apiBaseURL: 'https://back-end-porfolio.herokuapp.com';
+  //apiBaseURL:  'https://back-end-porfolio.herokuapp.com/',
   firebaseConfig: {
     apiKey: "AIzaSyBCMyX7t2EoeXWwJubfJn4Tx89qgDNRIak",
     authDomain: "porfolio-10e59.firebaseapp.com",
